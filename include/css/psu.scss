@@ -1,0 +1,57 @@
+/*-- scss.defaults --*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+$font-family-sans-serif: 'Roboto Slab', sans-serif;
+
+// Base document colors
+$theme-psu-nittany-navy: #001E44;
+$theme-psu-beaver-blue: #1E407C;
+$theme-psu-white-out: #FFFFFF;
+$theme-psu-pugh-blue: #96BEE6;
+$theme-psu-lions-roar: #BF8226;
+$theme-psu-lion-shrine: #B88965;
+$tertiary-color: lighten($theme-psu-pugh-blue, 15%);
+
+// Quarto callout colors
+$callout-color-note: $theme-psu-nittany-navy;
+$callout-color-tip: $theme-psu-beaver-blue;
+$callout-color-caution: $theme-psu-lions-roar;
+$callout-color-important: $theme-psu-lion-shrine;
+
+$presentation-heading-color: $theme-psu-beaver-blue;
+
+/*-- scss:rules --*/
+h1 {
+  color: $theme-psu-nittany-navy;
+  font-style: italic;
+  text-align: center;
+}
+
+h2, h3, h4, h5, h6 {
+  color: $theme-psu-beaver-blue;
+}
+
+h2, h3, h4 {
+  font-size: 1em;
+}
+
+h4 {
+  font-style: italic;
+  font-weight: bold;
+}
+
+/*-- scss:mixins --*/
+
+.highlight-color {
+  color: $theme-psu-lions-roar;
+  font-weight: bold;
+}
+
+.reveal .mermaid svg {
+  width: 100% !important;
+  max-width: none !important;
+  height: auto !important;
+}
+
+/*-- scss:functions --*/
+
+/*-- scss:uses --*/
