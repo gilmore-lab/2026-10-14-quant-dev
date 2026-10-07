@@ -1,0 +1,20 @@
+format: 
+  revealjs:
+    footer: "[Cognitive Brownbag](index.qmd) | © 2026 by Rick Gilmore under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
+    lightbox: true
+    reference-location: document
+    slide-number: true
+    fig-align: center
+    logo: https://brand.psu.edu/images/backgrounds/penn-state-shield.jpg
+    bibliography: [include/bib/refs.bib]
+    csl: include/bib/apa.csl
+    theme: [serif, include/css/psu.scss]
+    mainfont: roboto
+    code-fold: true
+    code-tools: true
+    chalkboard: true
+    link-external-icon: true
+    citations-hover: true
+knitr:
+  opts_chunk:
+    fig.path: include/fig/

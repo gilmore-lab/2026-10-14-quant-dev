@@ -1,607 +1,49 @@
 ---
-title: "Sharing is caring"
-subtitle: "Seeding the future of discovery in psychological science"
+title: "Open developmental science"
+subtitle: "The challenge and promise"
 format: revealjs
 ---
 
 # Preliminaries
 
----
+```{r}
+#| label: setup
+#| include: false
+library(kableExtra)
+library(ggplot2)
+library(leaflet)
+library(dplyr)
+library(forcats)
+library(readr)
+library(stringr)
+library(tidyr)
 
-{{< video https://www.youtube.com/watch?v=66oNv_DJuPc width="100%" height="70%" >}}
-
--- @NYU_Health_Sciences_Library2013-gp
+source("R/play_barplot.R")
+```
 
 ---
 
 ```{r}
 #| label: fig-cog-bbag-talk-qr
-#| fig-cap: "<https://gilmore-lab.github.io/2026-09-30-cognitive-bbag/>"
-plot(qrcode::qr_code("https://gilmore-lab.github.io/2026-09-30-cognitive-bbag/"))
+#| fig-cap: "<https://gilmore-lab.github.io/2026-10-14-quant-dev/>"
+plot(qrcode::qr_code("https://gilmore-lab.github.io/2026-10-14-quant-dev/"))
 ```
+
+## Acknowledgements
+
+- NIH: [5U01HD076595-03 ](https://reporter.nih.gov/search/P_AwvNMwlUmSVetRzaj69w/project-details/8828267); [1R01HD094830-01](https://reporter.nih.gov/search/P_AwvNMwlUmSVetRzaj69w/project-details/9500957)
+- NSF: [1238599](https://www.nsf.gov/awardsearch/show-award/?AWD_ID=1238599&HistoricalAwards=false); [2032713](https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2032713&HistoricalAwards=false); [2444730](https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2444730&HistoricalAwards=false)
+- New York University, Penn State
+- The Alfred P. Sloan Foundation, SRCD, Lego Foundation, James S. McDonnell Foundation, DARPA, The Association of Religion Data Archives (The ARDA), The Johns S. Templeton Foundation 
 
 ## Agenda
 
-- My (not so) hidden one
-- How (to share)
-- Where (to share)
-- What (to share)
-- The future of open psychological science
+- Databrary
+- Play & Learning Across a Year (PLAY)
+- The future of open developmental science
 
-# My (not so) hidden agenda
+# Databrary
 
-## 
-
-![<https://penn-state-open-science.github.io>](include/img/osi-home.png){#fig-osi-page width="85%"}
-
----
-
-:::: {.columns}
-::: {.column width=50%}
-- Project management
-- $+$ Data management 
-- $\rightarrow$ Sharing
-:::
-
-::: {.column width=50%}
-
-::: {.fragment}
-- Sharing
-  - Accelerates discovery
-  - Bolsters credibility
-  
-:::
-
-:::
-
-::::
-
-## ...is an ethical thing to do
-
->Whereas regulators of human subjects research often view data sharing solely in terms of potential risks to subjects, we argue that the **principles of human subject research require an analysis of both risks and benefits**...
-
--- @Brakewood2013-wj
-
-## 
-
->...such an analysis suggests that **researchers may have a positive duty to share data** in order to maximize the contribution that individual participants have made.
-
--- @Brakewood2013-wj
-
-## Principles of ethical data sharing
-
-:::: {.columns}
-::: {.column width=50%}
-- **F**indable
-- **A**ccessible
-- **I**nteroperable
-- **R**eusable
-
--- @Wilkinson2016-qr
-:::
-::: {.column width=50%}
-![@Carroll2020-mo](include/img/care-principles-datapng.png){#fig-care-principles width="75%"}
-:::
-::::
-
-## {auto-animate=true}
-
-![@Tenopir2020-mq Fig 7](https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0229003.g007&type=large){#fig-tenopir-2020-fig-7 width="75%"}
-
-##
-
-![@Tenopir2020-mq Fig 8](include/img/tenopir-2000-fig-xx.png){width="150%"}
-
-## 
-
-:::: {.columns}
-::: {.column width=60%}
-![@Tenopir2020-mq](include/img/tenopir-2000-fig-xx.png){#fig-tenopir-2020-why-not}
-:::
-::: {.column width=40%}
-::: {.fragment}
-- Must publish first
-- No time, funding
-- No rights/permission
-- Not required
-- No place to put
-- Insufficient skills
-:::
-:::
-::::
-
----
-
-![@Houtkoop2018-tl](include/img/houtkoop-2018-title.png){#fig-houtkoop-title}
-
----
-
-![](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnl3aDlrZWZ2Nm9tcXh1czhvYjk4bjJlc2M3emR5dG96NnpldWx0cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7abrH8o4HMgEAV9e/giphy.gif){fig-align="center" #fig-yoda-fear-in-you width="75%"}
-
-## 
-
-![@Houtkoop2018-tl Figure 3a](include/img/houtkoop-2018-fig-03a.png){#fig-houthoop-fear-yourself}
-
-## 
-
-:::: {.columns}
-::: {.column width=60%}
-![@Houtkoop2018-tl Figure 3a](include/img/houtkoop-2018-fig-03a.png)
-:::
-::: {.column width=40%}
-::: {.fragment}
-- Misinterpretations of the data
-- Scooped
-- Control over intellectual property
-- Unintended secondary use
-- Expose invalid conclusions, errors
-:::
-:::
-::::
-
-## 
-
-![@Houtkoop2018-tl Figure 3b](include/img/houtkoop-2018-fig-03b.png)
-
-## 
-
-:::: {.columns}
-::: {.column width=60%}
-![@Houtkoop2018-tl Figure 3b](include/img/houtkoop-2018-fig-03b.png)
-:::
-::: {.column width=40%}
-::: {.fragment}
-- Expose invalid conclusions
-- Control over intellectual property
-- Discover errors
-- Misinterpretation
-:::
-:::
-::::
-
----
-
-![](https://www.azquotes.com/picture-quotes/quote-the-only-thing-we-have-to-fear-is-fear-itself-franklin-d-roosevelt-25-8-0879.jpg){fig-align="center"}
-
-## Mitigating concerns
-
-:::: {.columns}
-::: {.column width=60%}
-- Errors
-  - Quality assurance testing and validation
-  - Automated data cleaning, visualization, analysis
-- Control over IP^[You don't own your data, anyway.], fear of being scooped
-  - Publish your data, garner citations
-  
-:::
-::: {.column width=40%}
-![](https://www.azquotes.com/picture-quotes/quote-the-only-thing-we-have-to-fear-is-fear-itself-franklin-d-roosevelt-25-8-0879.jpg)
-:::
-::::
-
-## "How likely are you to share your research data if..."
-
-![@Houtkoop2018-tl Figure 3b](include/img/houtkoop-2018-fig-04.png){#fig-houtkoop-2018-04 width="65%"}
-
-## 
-
-:::: {.columns}
-::: {.column width=60%}
-![@Houtkoop2018-tl Figure 3b](include/img/houtkoop-2018-fig-04.png)
-:::
-::: {.column width=40%}
-::: {.fragment}
-- Required by funder, journal, institution
-- Encouraged by funder, journal, institution
-- Easy, shown how
-- Garner citations, recognition, bigger/more grants
-:::
-:::
-::::
-
-## Funders think you should
-
-![@UnknownUnknown-da](include/img/nsf-data-sharing.png)
-
----
-
-![@UnknownUnknown-zt](include/img/nih-2003-policy.png)
-
-## NIH Data Management and Sharing Plan (DMS)
-
-> to promote the management and sharing of scientific data generated from NIH-funded or conducted research.
-
--- @National-Institutes-of-HealthUnknown-ys
-
-## NIH Data Management and Sharing Plan (DMS)
-
-![](include/img/nih-dms-2023-01-25.png)
-
-## NIH Data Management and Sharing Plan (DMS)
-
-- 2p DMS plan **required**
-- Must justify reasons if not sharing
-- Sharing plans become formal part of award agreement
-
----
-
-![@UnknownUnknown-hn](include/img/psu-rdm-policy.png)
-
----
-
-:::: {.columns}
-::: {.column width=60%}
-![@Houtkoop2018-tl Figure 3b](include/img/houtkoop-2018-fig-04.png)
-:::
-::: {.column width=40%}
-- *Required by funder*, journal, institution
-- *Encouraged by funder*, *journal*, *institution*
-
-::: {.incremental}
-- **Easy, shown how**
-- **Garner citations, recognition, bigger/more grants**
-:::
-:::
-::::
-
-# How
-
----
-
-![Giphy](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjRrM2I1aHE4amd3cno5dmtpMmM2eG5wbDI3ZGhudGxrZ24xc2t2NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/nBjOqZ6h0ili0/giphy.gif){#fig-giphy-messy-room width="65%"}
-
----
-
-![https://teacherhead.com/2017/02/27/reinventing-the-wheel-again/](https://headguruteacher.files.wordpress.com/2017/02/9464b325-d2f4-4604-8258-82093bf93af6.jpg){#fig-we-are-too-busy}
-
-## Pay me now, or pay me later
-
-{{< video https://youtu.be/Ij1yDpfZI8Q?si=69indipc6N5Vsc7s width="100%" height="70%" >}}
-
--- @PathfindersPerform2013-cy
-
-## Principles
-
-- Plan your work, work your plan
-- "Good enough" practices
-- Document
-- Automate
-- Get credit
-
-## Plan your work
-
-```{mermaid}
-%%| label: fig-proposal-to-project
-%%| fig-cap: "From proposal to project"
-flowchart LR
-  A(["Idea"]) --> B["Proposal"]
-  B --> C("Project_1")
-  B --> D("Project_2")
-  D --> E("Paper_2")
-  C --> F("Paper_1")
-  E --> G("Fame & Glory")
-  F --> G
-```
-
----
-
-```{mermaid}
-%%| label: fig-proposal-to-project-realistic
-%%| fig-cap: "From proposal to project: More realistic"
-flowchart LR
-  A(["Idea"]) --> B["Proposal"]
-  B --> C("Project_1")
-  B --> D("Project_2")
-  B --> I("IRB protocol")
-  G(["Data mgmt plan"]) --> B
-  G <--> I
-  C --> I
-  D --> I
-  D --> E("Paper_2")
-  C --> F("Paper_1")
-```
-
----
-
-```{mermaid}
-%%| label: fig-one-project
-%%| fig-cap: "One project workflow"
-flowchart LR
-  A["Project_1"] --> B["Survey"]
-  A --> C["fMRI"]
-  A --> D["Task_1"]
-  A --> E["Task_2"]
-  B --> P["Data_pipeline_1"]
-  C --> Q["Data_pipeline_2"]
-  D --> R["Data_pipeline_3"]
-  E --> R
-  F["Data mgmt plan"] --- B & C & D & E & P & Q & R
-  P --> G["Analysis_1"]
-  Q & R --> H["Analysis_2"]
-  G & H --> I["Poster"]
-  G & H --> J["Paper"]
-```
-
----
-
-```{mermaid}
-%%| label: fig-one-project-w-sharing
-%%| fig-cap: "Planned data sharing to a repository"
-flowchart TD
-  A["Project_1"] --> B["Survey"]
-  A --> C["fMRI"]
-  A --> D["Task_1"]
-  A --> E["Task_2"]
-  B --> P["Data_pipeline_1"]
-  C --> Q["Data_pipeline_2"]
-  D --> R["Data_pipeline_3"]
-  E --> R
-  F["Data mgmt plan"] --- B & C & D & E & P & Q & R
-  P --> G["Analysis_1"]
-  Q & R --> H["Analysis_2"]
-  G & H --> I["Poster"]
-  G & H --> J["Paper"]
-  C & D & G & H & F --> K["Data repository"]
-```
-
----
-
-```{mermaid}
-%%| label: fig-one-project-w-sharing-multirepo
-%%| fig-cap: "Planned data sharing in multiple repositories"
-flowchart LR
-  A["Project_1"] --> B["Survey"]
-  A --> C["fMRI"]
-  A --> D["Task_1"]
-  A --> E["Task_2"]
-  B --> P["Data_pipeline_1"]
-  C --> Q["Data_pipeline_2"]
-  D --> R["Data_pipeline_3"]
-  E --> R
-  F["Data mgmt plan"] --- B & C & D & E & P & Q & R
-  P --> G["Analysis_1"]
-  Q & R --> H["Analysis_2"]
-  G & H --> I["Poster"]
-  G & H --> J["Paper"]
-  B & C & D & G & H & F --> K["OpenNeuro"]
-  B --> L["OSF"]
-  K --- L
-```
-
----
-
-::: {.callout-important}
-## Lesson learned
-
-Plan your workflow in as much detail as you possibly can before you start.
-
-:::
-
-::: {.fragment}
-::: {.callout-important}
-## Lesson learned
-
-Plans change.
-
-So, evaluate, revise, and update.
-
-Document what you changed, when, and why.
-
-:::
-:::
-
-## Lessons learned
-
-::: {.callout-note}
-## Recommended practice
-
-Version your protocol.
-
-*Manual is fine*: e.g, `nsf-2412345-protocol-2025-12-02v01.docx`.
-
-*Automated is better*: Google Docs keeps version histories. 
-:::
-
-::: {.fragment}
-
-::: {.callout-important}
-## Quarto rocks!
-
-[![](https://quarto.org/quarto.png)](https://quarto.org)
-
-enables the creation of git-versioned web sites as protocols, among other types of scholarly documents.
-
-:::
-
-:::
-
-## Examples
-
-- Open Scholarship Survey (2022-23)
-  - [IRB protocol](https://penn-state-open-science.github.io/survey-fall-2022/hrp-591.html) + [data processing](https://penn-state-open-science.github.io/survey-fall-2022/data-gathering-and-cleaning.html) and [visualization pipeline](https://penn-state-open-science.github.io/survey-fall-2022/data-visualization.html)
-- Play & Learning Across a Year (PLAY Project)
-  - Project [site](https://play-project.org) and [protocol](https://play-project.org/collection.html)
-
----
-
-![@Gilmore2017-wd](include/img/nat-hum-beh.jpg){#fig-gilmore-adolph-video-can width="75%"}
-
----
-
-{{< video https://databrary.org/assets/example-video-1-Dyoh4lqO.mp4 >}}
-
--- @UnknownUnknown-vx
-
----
-
-{{< video include/vid/collection-scheduling-initialrecruiting-phonecall-english.mp4 >}}
-
--- @UnknownUnknown-ik
-
----
-
-::: {.callout-important}
-## Lesson learned
-
-Well-documented plans & practices can be reused for new projects.
-
-Be kind to your future (forgetful) self.
-
-:::
-
----
-
-:::: {.columns}
-::: {.column width=50%}
->*The first principle is that you must not fool yourself—and you are the easiest person to fool.*
-
-@Feynman1974-tk
-:::
-::: {.column width=50%}
-![Richard Feynman. Wikipedia^[By The Nobel Foundation - http://www.nobelprize.org/nobel_prizes/physics/laureates/1965/feynman-bio.html, PD-Sweden, https://en.wikipedia.org/w/index.php?curid=34664654]](https://upload.wikimedia.org/wikipedia/en/4/42/Richard_Feynman_Nobel.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled){#fig-feynman width="65%"}
-:::
-::::
-
-## Automate & Standardize
-
-- Script/code *everything* you possibly can
-  - Learn R, Python, shell scripting
-  - You can do it!
-  - Build things you actually need
-  
-## Automate & Standardize
-
-```bash
-# These are bash shell commands
-mkdir -p project/{admin,protocol,data}
-mkdir -p project/admin/{financial,irb,meeting_documents,recruitment,research_assistants}
-mkdir -p project/data/sub-control01/{anat,func,dwi,fmap}
-```
-
-## Automate & Standardize
-
-![Acknowledgement: Alaina Pearce](include/img/tree.png){#fig-project-mgmt-directory-structure width="75%"}
-
-## Automate & Standardize
-
-- Capture data in electronic form as much as possible
-  - e.g., Qualtrics, Google Forms, REDCap, [KoBoToolbox](https://kobotoolbox.org)
-- Let the computer do tedious, repetitive, error-prone work
-  - e.g., data export & cleaning
-  - Code as documentation
-
-## Examples
-
-- Project-specific R packages (A. Pearce)
-- [REDcap](https://project-redcap.org) to capture project metadata
-- Executable [Quarto](https://quarto.org) documents
-  - Bootcamp 2026 [site](https://penn-state-open-science.github.io/bootcamp-2026/)
-  - Bootcamp 2026 Workshops [I](https://penn-state-open-science.github.io/bootcamp-2026-quarto-I/) and [II](https://penn-state-open-science.github.io/bootcamp-2025-quarto-II/)
-  - Open Scholarship [Survey](https://penn-state-open-science.github.io/survey-fall-2022/)
-
-## Common themes
-
-- Raw data live in secure place
-- Use API calls to gather, clean, process
-
-::: {.fragment}
-::: {.callout-important}
-## (Painful) lesson learned
-
-APIs can change, so be prepared to update your procedures & code.
-
-:::
-:::
-
-# Where
-
-## Big picture
-
-- Privacy & permission
-- AI and IP
-- Type(s) of data
-- Repositories
-- *Data papers*
-
-## Privacy & permission
-
-- Ask your participants
-- Broad consent vs. narrow
-- Store sharing permission & consider sharing it
-- Pseudo-anonymizing
-  - Required?
-  
-## AI and IP
-
-- Sharing data, protocols, metadata, code publicly means...
-- *Anyone/anything* can mine & use
-  - Secondary use not governed by ethics board
-  - Will you get credited/cited properly?
-- Alternative: Restricted access sharing
-
-## Type(s) of data
-
-- Imaging data
-- Non-identifiable
-- Identifiable
-
-## Imaging data 
-
-:::: {.columns}
-::: {.column width=40%}
-- [OpenNeuro](https://openneuro.org)
-- Use [BIDS](https://bids.neuroimaging.io)
-:::
-::: {.column width=60%}
-![<https://openneuro.org>](include/img/openneuro.png){#fig-openneuro}
-:::
-::::
-
-## Imaging data
-
-:::: {.columns}
-::: {.column width=40%}
-- Use [BIDS](https://bids.neuroimaging.io)
-:::
-::: {.column width=60%}
-![](https://bids.neuroimaging.io/assets/img/dicom-reorganization-transparent-black_1000x477.png#only-light){#fig-bids}
-:::
-::::
-
-## Non-identifiable data
-
-:::: {.columns}
-::: {.column width=40%}
-- [Level 1](https://security.psu.edu/awareness/icdt/) in Penn State's data classification
-- PSU's [ScholarSphere](https://scholarsphere.psu.edu)
-:::
-::: {.column width=60%}
-![<https://scholarsphere.psu.edu>](include/img/scholarsphere.png){#fig-scholarsphere}
-:::
-::::
-
-## Non-identifable data
-
-:::: {.columns}
-::: {.column width=40%}
-- [~~Open Science Framework (OSF)~~](https://osf.io)
-:::
-::: {.column width=60%}
-![<https://osf.io>](include/img/osf.png)
-:::
-::::
-
-## Identifiable data
-
-:::: {.columns}
-::: {.column width=50%}
-- [Inter-university Consortium for Political and Social Research (ICPSR)](https://www.icpsr.umich.edu/sites/icpsr/home)
-:::
-::: {.column width=50%}
-![<https://www.icpsr.umich.edu>](include/img/icpsr.png)
-:::
-::::
-  
 ## Identifiable data
 
 :::: {.columns}
@@ -623,6 +65,8 @@ APIs can change, so be prepared to update your procedures & code.
 - Data library
 - Housed at NYU
 - Specialized for storing, sharing *identifiable data*
+- Sponsored by NIH & NSF
+- Online since March 2014
 
 ## How!?
 
@@ -691,7 +135,6 @@ release_levels <- databraryr::get_release_levels()
 ## By the numbers
 
 ```{r}
-#| echo: true
 db_stats <- databraryr::get_db_stats()
 ```
 
@@ -705,7 +148,6 @@ db_stats <- databraryr::get_db_stats()
 :::: {.columns}
 ::: {.column width=50%}
 ```{r}
-#| echo: true
 psu_info <- get_institution_by_id(institution_id = 12)
 if (psu_info$has_avatar) {
   avatar_fn <- get_institution_avatar(12, dest_path = "tmp/psu_avatar.png")
@@ -716,13 +158,12 @@ if (psu_info$has_avatar) {
 :::
 ::: {.column width=50%}
 ```{r}
-#| echo: true
 #| label: fig-map-lat-lon
 #| fig-cap: "A map generated via lat/lon data provided via the Databrary API."
 
 lat <- as.numeric(psu_info$latitude)
 lon <- as.numeric(psu_info$longitude)
-library(leaflet)
+
 leaflet() %>%
   addTiles() %>%  # Adds the default OpenStreetMap map background
   addMarkers(lng = lon, lat = lat, popup = "We are...")
@@ -733,7 +174,6 @@ leaflet() %>%
 ## Researchers @ Penn State {.scrollable}
 
 ```{r}
-#| echo: true
 psu_ais <- list_institution_affiliates(institution_id = 12)
 ```
 
@@ -742,7 +182,6 @@ psu_ais <- list_institution_affiliates(institution_id = 12)
 ---
 
 ```{r}
-library(kableExtra)
 psu_ais |>
   dplyr::select(user_id, user_prename, user_sortname) |>
   dplyr::rename(id = user_id, first = user_prename, last = user_sortname) |>
@@ -754,7 +193,6 @@ psu_ais |>
 ## Data @ Penn State
 
 ```{r}
-#| echo: true
 source("R/get_institution_user_stats.R")
 psu_stats <- get_institution_statistics(12)
 psu_user_stats <- get_institution_user_stats(12)
@@ -770,14 +208,17 @@ user_volumes_number <- sum(psu_user_stats$volumes_number)
   
 ## New features
 
-- Secure API for scriptable interactions (up/download)^[NSF 244730]
+::: {.incremental}
+- Secure API for scriptable interactions (up/download)^[NSF 2444730]
   - *databraryr* (R)
   - *databrarypy* (Python)
 - Custom collections
-  - Curate your own set of clips, datasets^[NSF 244730]
+  - Curate your own set of clips, datasets^[NSF 2444730]
 - External integrations
   - Add geographically-informed data from U.S. Census^[In collaboration with [The ARDA](https://thearda.org); financial support from the John S. Templeton Foundation.]
-  
+
+:::
+
 # Play & Learning Across a Year (PLAY)
 
 ---
@@ -803,16 +244,43 @@ user_volumes_number <- sum(psu_user_stats$volumes_number)
 
 ```{r}
 #| label: play-csv-data
-library(ggplot2)
-library(dplyr)
-library(forcats)
-library(readr)
-library(stringr)
-
-play_df <- readr::read_csv("private/csv/Play_&_Learning_Across_a_Year_(PLAY)_project_-_data_release.csv")
-
-play_df <- play_df |>
-  mutate(particip_id = stringr::str_extract(file_name, "[A-Z]{5}_[0-9]{3}"))
+play_raw_df <- readr::read_csv("private/csv/Play_&_Learning_Across_a_Year_(PLAY)_project_-_data_release.csv")
+#| echo: true
+play_df <- play_raw_df |>
+  mutate(particip_id = stringr::str_extract(file_name, "[A-Z]{5}_[0-9]{3}")) |>
+  distinct() |>
+  filter(!is.na(particip_id)) |>
+  rename(
+    ethnicity = `participant-1-ethnicity`,
+    language = `participant-1-language`,
+    gender = `participant-1-gender`,
+    race = `participant-1-race`,
+    age_wks = `participant-1-age_weeks`,
+    age_mos = `participant-1-age_months`,
+    gold_silver = `group-1-name`,
+    sharing = container_release_level
+  ) |>
+  mutate(
+    english = str_detect(language, "English"),
+    spanish = str_detect(language, "Spanish"),
+    english_spanish = str_detect(language, "English, Spanish"),
+  ) |>
+  mutate(gold_silver = if_else(str_detect(gold_silver, "No_"), "No_visit", gold_silver)) |>
+  filter(gold_silver %in% c("PLAY_Gold", "PLAY_Silver")) |>
+  select(
+    particip_id,
+    ethnicity,
+    gender,
+    race,
+    age_wks,
+    age_mos,
+    gold_silver,
+    sharing,
+    english,
+    spanish,
+    english_spanish
+  ) |>
+  distinct()
 ```
 
 ```{r}
@@ -825,78 +293,37 @@ play_summ_n_files_df <- play_df |>
 - *N*=`{r} dim(play_summ_n_files_df)[1]` participant dyads
 - *N*=`{r} format(sum(play_summ_n_files_df$n_files), big.mark = ",", digits = 4)` shared files
 
-
-
 ## PLAY sharing permission
 
 ```{r}
 #| label: fig-play-data-release
-#| fig-cap: "Sharing permissions granted for PLAY corpus. Not that most parents gave permission to share data and allow excerpts to be shown."
-play_summ_release_df <- play_df |>
-  select(particip_id, container_release_level) |>
-  rename(sharing = container_release_level) |>
-  distinct()
+#| fig-cap: "Sharing permissions granted for PLAY corpus. Note that most parents gave permission to share data and allow excerpts to be shown."
 
-play_summ_release_df |>
-  mutate(sharing = fct_rev(fct_inorder(sharing))) |>
+play_sharing <- play_df |>
+  group_by(sharing) |>
+  summarise(n_dyads = n())  
+
+play_sharing |>
+  mutate(sharing = fct_reorder(sharing, n_dyads)) |>
   ggplot() +
-  geom_bar(aes(x = sharing, fill = sharing), stat = "count") +
+  geom_col(aes(x = sharing, y = n_dyads, fill = sharing)) +
+  geom_text(aes(x = sharing, y = n_dyads + 40, 
+                label = n_dyads),
+            vjust = 0) +
   coord_flip() +
   theme_classic() +
-  theme(legend.position = "n") +
-  ylab("dyads") +
+  theme(legend.position = "none") +
   xlab("") +
-  theme(axis.text = element_text(size = 18))
+  ylab("dyads") +
+  theme(axis.text = element_text(size = 18),
+        axis.title = element_text(size = 18))
 ```
 
-## PLAY demographics
+## PLAY age @ observation
 
 ```{r}
-#| label: play-data-demog
-#| echo: true
-play_summ_demog_df <- play_df |>
-  select(
-    particip_id,
-    `participant-1-gender`,
-    `participant-1-race`,
-    `participant-1-ethnicity`,
-    `participant-1-language`,
-    `participant-1-age_weeks`,
-    `participant-1-age_months`,
-    `group-1-name`
-  ) |>
-  distinct() |>
-  rename(
-    ethnicity = `participant-1-ethnicity`,
-    language = `participant-1-language`,
-    gender = `participant-1-gender`,
-    race = `participant-1-race`,
-    age_wks = `participant-1-age_weeks`,
-    age_mos = `participant-1-age_months`,
-    gold_silver = `group-1-name`
-  ) |>
-  mutate(english = str_detect(language, "English"),
-         spanish = str_detect(language, "Spanish"),
-         both = str_detect(language, "English, Spanish")) |>
-  mutate(gold_silver = if_else(str_detect(gold_silver, "No_"), "No_visit", gold_silver))
-```
-
-- Sex reported at birth:
-  - `{r} sum(play_summ_demog_df$gender == "Female", na.rm = TRUE)` girls; `{r} sum(play_summ_demog_df$gender == "Male", na.rm = TRUE)` boys
-- Languages spoken at home:
-  - English: `{r} sum(play_summ_demog_df$english == TRUE, na.rm = TRUE)`
-  - Spanish: `{r} sum(play_summ_demog_df$spanish == TRUE, na.rm = TRUE)`
-  - Both English & Spanish: `{r} sum(play_summ_demog_df$both == TRUE, na.rm = TRUE)`
-
-## PLAY demographics {.scrollable}
-
-```{r}
-#| label: fig-play-demog-age
-#| fig-cap: "Reported race^[using 1997 OMB categories] for children in PLAY sample."
-#| echo: true
-#| message: false
-#| warning: false
-play_summ_demog_df |>
+#| label: fig-play-age-weeks
+play_df |>
   filter(!is.na(age_wks)) |>
   mutate(age_wks = as.numeric(age_wks)) |>
   ggplot() +
@@ -905,113 +332,108 @@ play_summ_demog_df |>
   theme_classic() +
   xlab("Age (weeks)") +
   ylab("Participants") +
-  theme(axis.text = element_text(size = 18))
+  theme(axis.text = element_text(size = 18),
+        axis.title.x = element_text(size = 18),
+        axis.title.y = element_text(size = 18))
 ```
 
-## PLAY demographics {.scrollable}
-  
+## Race
+
 ```{r}
-#| label: fig-play-demog-race
-#| fig-cap: "Reported race^[using 1997 OMB categories] for children in PLAY sample."
-#| echo: true
-play_summ_demog_df |>
-  filter(!is.na(race)) |>
-  mutate(n_race = fct_rev(fct_infreq(race))) |>
+#| label: fig-play-race
+play_race <- play_df |>
+  group_by(race) |>
+  summarise(n_dyads = n())
+
+play_race |>
+  mutate(race = fct_reorder(race, n_dyads)) |>
   ggplot() +
-  geom_col(aes(x = n_race, fill = n_race), stat = "count") +
+  geom_col(aes(x = race, y = n_dyads, fill = race)) +
+  geom_text(aes(x = race, y = n_dyads + 40, 
+                label = n_dyads),
+            vjust = 0) +
   coord_flip() +
   theme_classic() +
   theme(legend.position = "none") +
   xlab("") +
   ylab("dyads") +
-  theme(axis.text = element_text(size = 18))
+  theme(axis.text = element_text(size = 18),
+        axis.title = element_text(size = 18))
 ```
 
-## PLAY demographics {.scrollable}
+## Ethnicity
 
 ```{r}
 #| label: fig-play-demog-ethnicity
-#| fig-cap: "Reported ethnicity ^[using 1997 OMB categories] for children in PLAY sample."
-#| echo: true
-play_summ_demog_df |>
-  filter(!is.na(ethnicity)) |>
-  mutate(n_ethnicity = fct_rev(fct_infreq(ethnicity))) |>
+#| fig-cap: "Reported ethnicity for children in PLAY sample."
+
+play_ethnicity <- play_df |>
+  group_by(ethnicity) |>
+  summarise(n_dyads = n())
+
+play_ethnicity |>
+  mutate(ethnicity = fct_reorder(ethnicity, n_dyads)) |>
   ggplot() +
-  geom_col(aes(x = n_ethnicity, fill = n_ethnicity), stat = "count") +
+  geom_col(aes(x = ethnicity, y = n_dyads, fill = ethnicity)) +
+  geom_text(aes(x = ethnicity, y = n_dyads + 40, label = n_dyads), vjust = 0) +
   coord_flip() +
-  theme_classic() +
-  theme(legend.position = "none") +
   xlab("") +
   ylab("dyads") +
-  theme(axis.text = element_text(size = 18))
-``` 
+  theme_classic() +
+  theme(legend.position = "none") +
+  theme(axis.text = element_text(size = 18),
+        axis.title = element_text(size = 18))
+```
+
+## Languages spoken at home
+
+```{r}
+#| label: fig-play-langs-at-home
+play_lang <- play_df |>
+  select(particip_id, english, spanish, english_spanish) |>
+  mutate(english_only = ifelse(english & !spanish, TRUE, FALSE),
+         spanish_only = ifelse(spanish & !english, TRUE, FALSE)) |>
+  pivot_longer(
+    cols = c(english_only, spanish_only, english_spanish),
+    names_to = "language",
+    values_to = "speaks"
+  ) |>
+  select(particip_id, language, speaks) |>
+  mutate(lang_at_home = if_else(speaks == TRUE, language, NA)) |>
+  filter(!is.na(lang_at_home)) |>
+  select(particip_id, lang_at_home)
+
+play_barplot(play_lang, lang_at_home)
+```
+
+## Let's take a peak
+
+![<https://databrary.org/volume/1280>](include/img/databrary-1280-play.png){#fig-play-release-volume-databrary}
 
 ## PLAY status
 
 - Shared with launch group (data collectors, coders, advisers)
-- Shared broadly next summer
-- Opportunities to mine/enhance the data
+- Shared broadly (with Databrary Authorized Investigators) next summer
+- Opportunities to mine/enhance the data now
 
 ## Automation in PLAY
 
-- Extensive use of Databrary API
-- Simple demos here
-  - Download to secure encrypted (non-version-controlled) directory
-  - Clean and process data for visualizations, analyses
+- Extensive use of Databrary API, *databraryr*
+- Simple demos in this talk
+  - Download to secure, encrypted (non-version-controlled) directory
+  - Clean and process data for aggregation, visualization, analysis
+- Project website in [Quarto](https://quarto.org)
   
 ```{r}
 #| include: false
 logout_db()
 ```
-  
-# What to share
 
-## Low hanging fruit
+# What about AI?
 
-:::: {.columns}
-::: {.column width=50%}
-- Protocols
-  - Text + images
-  - Video
-- Displays
-  - Code^[On Github, Gitlab or other.]
-  - Video
-  
-:::
-::: {.column width=50%}
-- Code
-  - Data cleaning
-  - Visualization
-  - Analysis
-- Data
-  - Non-identifiable^[But consider AI, non-expected uses.]
-  
-:::
-::::
 
-## Low hanging fruit
 
-- Pubs
-  - Preliminary reports
-  - Posters, preprints
-
-## A (slightly bigger) lift
-
-- Identifiable data
-  - Video or audio recordings of individual sessions
-  - Exact birth or test dates
-  - Geographic information (e.g., address-related) for contextual info
-    - Median income, health, education, environmental quality, climate, etc.^[e.g., Was your sample collected in an area with high COVID rates?]
-
----
-
-### Should all/most data from human participants be shared via restricted access?
-
----
-
-![](include/img/disclosive-reidentification.png){#fig-disclosive-reidentification}
-
-# The future of open psychological science
+# The future of open developmental science
 
 ## {background-color="black"}
 
@@ -1045,13 +467,6 @@ logout_db()
 
 :::
 
----
-
-::: {.fragment}
-
-![@Otsuka2026-ad Figure 3](https://journals.sagepub.com/cms/10.1177/00220221251389109/asset/e4af2390-07e0-49f7-b011-7e0dcd80894c/assets/images/large/10.1177_00220221251389109-fig3.jpg){#fig-otsuka-2026-fig-03 width="65%"}
-
-:::
 
 ## Imagine...
 
@@ -1069,7 +484,6 @@ logout_db()
   - Reproduce prior analyses, visualizations
   - Replicate prior findings first
   - Create open, versioned protocols
-
 
 ## Opportunities
 
@@ -1090,7 +504,7 @@ logout_db()
 - Help Gilmore with open science projects
   - PLAY
       - Shiny app
-      - New analysis of video data
+      - New analyses of video data
       - Augment with geographically informed contextual data
   - How-to papers about *databraryr* or *databrarypy*
   - Mega-analysis of child visual acuity data
@@ -1103,7 +517,10 @@ logout_db()
 - Open sharing strengthens your research
 - Restricted access sharing protects participants and their privacy
 - Databrary enables open sharing of research data with access restrictions
-- Join us in building a more open, transparent, robust, and reproducible future
+
+## Main points
+
+- PLAY project demonstrates feasibility of large-scale video-centric developmental science
 
 # Resources
 
