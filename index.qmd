@@ -1,6 +1,6 @@
 ---
 title: "Open developmental science"
-subtitle: "The challenge and promise"
+subtitle: "A personal journey"
 format: revealjs
 ---
 
@@ -38,18 +38,104 @@ plot(qrcode::qr_code("https://gilmore-lab.github.io/2026-10-14-quant-dev/"))
 
 ## Agenda
 
-- Databrary
-- Play & Learning Across a Year (PLAY)
+- A personal journey in open developmental science
 - The future of open developmental science
+
+# A personal journey in open developmental science
+
+## What kind are you?
+
+::: {.fragment}
+:::: {.columns}
+::: {.column width=50%}
+### Data Consumer
+
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjzVpZIIJsneFxxXHLF6JQZbi_5d51dSocx4MwWt0NIKqRmFbDLm6YbX4&s=10){width="70%" fig-align="center"}
+:::
+::: {.column width=50%}
+### Data Producer
+
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYCkRFfb7ZWFCQQ9UPsyemwBY2DQFwQBW2AeaP_FGOCuDQ2QJtzQW3QrA&s=10){fig-align="center"}
+:::
+::::
+:::
+
+## A tale of two eras
+
+::: {.fragment}
+:::: {.columns}
+::: {.column width=50%}
+### BC^[Before the conversation.]
+:::
+::: {.column width=50%}
+### AD^[After Databrary.]
+:::
+::::
+:::
+
+::: {.fragment}
+:::: {.columns}
+::: {.column width=50%}
+![](https://play-project.org/img/people-karen.png){fig-align="center" width="50%"}
+
+:::
+::: {.column width=50%}
+![](include/img/databrary-new-leaf.jpg){fig-align="center"}
+:::
+::::
+:::
+ 
+## Before
+
+:::: {.columns}
+
+::: {.column width=50%}
+::: {.fragment}
+
+- Lab-based developmental vision science
+  - How working memory develops in infancy
+  - How complex motion perception develops
+  - Various side projects
+
+:::
+
+:::
+
+::: {.column width=50%}
+::: {.fragment}
+
+- Small samples, computer-based tasks, behavioral & neural data
+- Semi-manual data processing and visualization
+- No sharing of data, code, methods
+- No replication, focus on reproducibility 
+
+:::
+:::
+::::
+
+## Afterward
+
+:::: {.columns}
+::: {.column width=50%}
+- (Shared) data, code, materials >> my specific findings
+- Behavioral scientists can (and should) study meaningful behavior
+- Current practices slow progress in discovery
+:::
+::: {.column width=50%}
+- Showing your work is easy with the right tools^[I favor [Quarto](https://quarto.org).]
+- Workable policies & technologies for safely & securing sharing sensitive and identifiable data are essential^[And always under scrutiny.]
+- Policy development for [SRCD](https://www.srcd.org/policy-scientific-integrity-transparency-and-openness), [PSU Open Scholarship Initiative](https://penn-state-open-science.github.io/)
+:::
+::::
 
 # Databrary
 
-## Identifiable data
+## Can identifiable data
 
 :::: {.columns}
 ::: {.column width=50%}
 - Especially video & audio^[Plus birth dates, test dates, address/geo information.]
-- Can be shared *unaltered*
+- Be shared *unaltered*?
 :::
 ::: {.column width=50%}
 ![Giphy](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTFjajdmN3pmbDEzZ3BwYXprOXhoemI0ZG5xbGw4eXlucG85bGhhZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/daPCSjwus6UR2JxRX1/giphy.gif)
@@ -71,11 +157,26 @@ plot(qrcode::qr_code("https://gilmore-lab.github.io/2026-10-14-quant-dev/"))
 ## How!?
 
 - Restricted access
-- Explicit sharing release from participants/parents/staff
-- Institutional agreements
+- Explicit [sharing release](https://databrary.org/support/irb) from participants/parents/staff
+- Institutional [agreements](https://databrary.org/about/agreement) 
+
+## 
+
+![Databrary sharing [release levels](https://databrary.org/support/irb/release-levels).](include/img/databrary-release-levels.png){#fig-databrary-release-levels width="85%"}
 
 ## Restricted access
 
+:::: {.columns}
+::: {.column width=50%}
+- *Private*: Accessible only to data owner + people supervised by owner
+- *Authorized Users*: Accessible to Authorized Users (for broad research reuse)
+:::
+::: {.column width=50%}
+![](include/img/databrary-release-levels.png)
+:::
+::::
+
+::: {.fragment}
 ```{r}
 #| message: false
 #| include: false
@@ -91,18 +192,11 @@ login_db(email = Sys.getenv("DATABRARY_LOGIN"),
 
 ```{r}
 #| echo: true
-release_levels <- databraryr::get_release_levels()
+#| code-fold: false
+databraryr::get_release_levels()
 ```
+:::
 
-:::: {.columns}
-::: {.column width=50%}
-- *Private*: Accessible only to data owner + people supervised by owner
-- *Authorized Users*: Accessible to Authorized Users (for broad research reuse)
-:::
-::: {.column width=50%}
-![](include/img/databrary-release-levels.png)
-:::
-::::
 
 ## Restricted access
 
@@ -132,16 +226,28 @@ release_levels <- databraryr::get_release_levels()
 :::
 ::::
 
+---
+
+![https://databrary.org/home](include/img/databrary-site-map.png){#fig-databrary-map}
+
 ## By the numbers
 
 ```{r}
+#| echo: true
 db_stats <- databraryr::get_db_stats()
 ```
 
+:::: {.columns}
+::: {.column width=50%}
 - *N*=`{r} db_stats$institutions` institutions
 - *N*=`{r} format(db_stats$investigators, big.mark = ",")` institutionally-authorized investigators
 - *N*=`{r} db_stats$affiliates` staff & trainees
 - *N*=`{r} format(db_stats$hours_of_recordings, big.mark = ",")` hours of shared recordings
+:::
+::: {.column width=50%}
+![https://databrary.org/home](include/img/databrary-site-map.png)
+:::
+::::
 
 ## Databrary @ Penn State {.scrollable}
 
@@ -174,25 +280,28 @@ leaflet() %>%
 ## Researchers @ Penn State {.scrollable}
 
 ```{r}
+#| echo: true
 psu_ais <- list_institution_affiliates(institution_id = 12)
 ```
 
 - There are *n*=`{r} dim(psu_ais)[1]` *Authorized Investigators*
 
----
-
 ```{r}
+#| echo: true
+#| label: tbl-psu-databrary-ais
+#| tbl-cap: "Authorized Investigators @ Penn State UP"
 psu_ais |>
   dplyr::select(user_id, user_prename, user_sortname) |>
   dplyr::rename(id = user_id, first = user_prename, last = user_sortname) |>
   kableExtra::kable() |>
-  kable_styling("striped", full_width = FALSE) %>%
-  scroll_box(width = "900px", height = "600px")
+  kable_styling("striped", full_width = FALSE) |>
+  scroll_box(width = "900px", height = "250px")
 ```
 
 ## Data @ Penn State
 
 ```{r}
+#| echo: true
 source("R/get_institution_user_stats.R")
 psu_stats <- get_institution_statistics(12)
 psu_user_stats <- get_institution_user_stats(12)
@@ -208,16 +317,25 @@ user_volumes_number <- sum(psu_user_stats$volumes_number)
   
 ## New features
 
-::: {.incremental}
 - Secure API for scriptable interactions (up/download)^[NSF 2444730]
-  - *databraryr* (R)
+  - [*databraryr*](https://github.com/NYU-Databrary/databraryr) (R)
   - *databrarypy* (Python)
-- Custom collections
-  - Curate your own set of clips, datasets^[NSF 2444730]
+- Custom collections^[NSF 2444730]
+  - Curate your own set of clips, datasets
 - External integrations
   - Add geographically-informed data from U.S. Census^[In collaboration with [The ARDA](https://thearda.org); financial support from the John S. Templeton Foundation.]
+  
+## Aspirations
 
-:::
+- Membership model
+- Platform for discovery
+  - Active curation [@Soska2021-mh]
+  - Metadata standardization & documentation
+  - Scripted (reproducible) access
+  - Improved search & filtering
+- Private/restricted access AI model-building
+
+---
 
 # Play & Learning Across a Year (PLAY)
 
@@ -285,6 +403,7 @@ play_df <- play_raw_df |>
 
 ```{r}
 #| label: play-data-n-files
+#| echo: true
 play_summ_n_files_df <- play_df |>
   group_by(particip_id) |>
   summarise(n_files = n())
@@ -322,15 +441,17 @@ play_sharing |>
 ## PLAY age @ observation
 
 ```{r}
-#| label: fig-play-age-weeks
+#| label: fig-play-age-mos
+#| fig-cap: "Age (in months) at observation. We targeted 12, 18, and 24 mos (+/- 1 mo)."
 play_df |>
   filter(!is.na(age_wks)) |>
-  mutate(age_wks = as.numeric(age_wks)) |>
+  filter(sharing %in% c("learning_audiences", "authorized_users")) |>
+  mutate(age_mos = as.numeric(age_wks)/4.33) |>
   ggplot() +
-  aes(x = age_wks) +
+  aes(x = age_mos) +
   geom_histogram(bins = 18) +
   theme_classic() +
-  xlab("Age (weeks)") +
+  xlab("Age (mos)") +
   ylab("Participants") +
   theme(axis.text = element_text(size = 18),
         axis.title.x = element_text(size = 18),
@@ -341,6 +462,7 @@ play_df |>
 
 ```{r}
 #| label: fig-play-race
+#| fig-cap: "Parent-reported race of child."
 play_race <- play_df |>
   group_by(race) |>
   summarise(n_dyads = n())
@@ -365,7 +487,7 @@ play_race |>
 
 ```{r}
 #| label: fig-play-demog-ethnicity
-#| fig-cap: "Reported ethnicity for children in PLAY sample."
+#| fig-cap: "Parent-reported ethnicity of child."
 
 play_ethnicity <- play_df |>
   group_by(ethnicity) |>
@@ -389,6 +511,7 @@ play_ethnicity |>
 
 ```{r}
 #| label: fig-play-langs-at-home
+#| fig-cap: "Parent report of whether English or Spanish (or both) are spoken to the child at home."
 play_lang <- play_df |>
   select(particip_id, english, spanish, english_spanish) |>
   mutate(english_only = ifelse(english & !spanish, TRUE, FALSE),
@@ -414,15 +537,15 @@ play_barplot(play_lang, lang_at_home)
 
 - Shared with launch group (data collectors, coders, advisers)
 - Shared broadly (with Databrary Authorized Investigators) next summer
-- Opportunities to mine/enhance the data now
+- Opportunities to mine/enhance/do research on the data now
 
 ## Automation in PLAY
 
 - Extensive use of Databrary API, *databraryr*
-- Simple demos in this talk
+- Simple demos throughout this talk
   - Download to secure, encrypted (non-version-controlled) directory
   - Clean and process data for aggregation, visualization, analysis
-- Project website in [Quarto](https://quarto.org)
+- Project website & full protocol in [Quarto](https://quarto.org).
   
 ```{r}
 #| include: false
@@ -431,7 +554,26 @@ logout_db()
 
 # What about AI?
 
+## Or, the law of unintended consquences
 
+## Disclosive reidentification {.scrollable}
+
+![](include/img/disclosive-reidentification.png){#fig-disclosive-reid width = "65%"}
+
+## Public sharing of pseudo-anonymized data
+
+- A standard practice
+
+::: {.incremental}
+- If well-curated (big if), may accelerate discovery
+- Provides no protection against disclosive reidentification
+- Provides weak encouragement for giving scholarly credit via citation
+
+:::
+
+## {.center}
+
+### Should *all* data about human participants be shared with access restrictions? 
 
 # The future of open developmental science
 
@@ -467,6 +609,9 @@ logout_db()
 
 :::
 
+## Imagine...
+
+- All data shared via restricted access data repositories
 
 ## Imagine...
 
@@ -477,13 +622,6 @@ logout_db()
   - 1-2 year/master's project conducts an exact^[As possible.] *replication*^[At least for the first study of a multi-study project]
 
 :::
-
-## Opportunities
-
-- Strengthen open practices into your lab group
-  - Reproduce prior analyses, visualizations
-  - Replicate prior findings first
-  - Create open, versioned protocols
 
 ## Opportunities
 
