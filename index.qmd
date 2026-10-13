@@ -1,6 +1,9 @@
 ---
 title: "Open developmental science"
 subtitle: "A personal journey"
+author: Rick Gilmore
+institute: ["Department of Psychology", "Databrary.org"]
+date: 2026-10-14
 format: revealjs
 ---
 
@@ -34,7 +37,7 @@ plot(qrcode::qr_code("https://gilmore-lab.github.io/2026-10-14-quant-dev/"))
 - NIH: [5U01HD076595-03 ](https://reporter.nih.gov/search/P_AwvNMwlUmSVetRzaj69w/project-details/8828267); [1R01HD094830-01](https://reporter.nih.gov/search/P_AwvNMwlUmSVetRzaj69w/project-details/9500957)
 - NSF: [1238599](https://www.nsf.gov/awardsearch/show-award/?AWD_ID=1238599&HistoricalAwards=false); [2032713](https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2032713&HistoricalAwards=false); [2444730](https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2444730&HistoricalAwards=false)
 - New York University, Penn State
-- The Alfred P. Sloan Foundation, SRCD, Lego Foundation, James S. McDonnell Foundation, DARPA, The Association of Religion Data Archives (The ARDA), The Johns S. Templeton Foundation 
+- The Alfred P. Sloan Foundation, SRCD, Lego Foundation, James S. McDonnell Foundation, DARPA, The Association of Religion Data Archives (The ARDA), The John S. Templeton Foundation 
 
 ## Agenda
 
@@ -249,6 +252,10 @@ db_stats <- databraryr::get_db_stats()
 :::
 ::::
 
+## {.scrollable}
+
+![Top Databrary-using institutions by number of Authorized Investigators and usage.](include/img/databrary-usage-table.png)
+
 ## Databrary @ Penn State {.scrollable}
 
 :::: {.columns}
@@ -286,6 +293,8 @@ psu_ais <- list_institution_affiliates(institution_id = 12)
 
 - There are *n*=`{r} dim(psu_ais)[1]` *Authorized Investigators*
 
+---
+
 ```{r}
 #| echo: true
 #| label: tbl-psu-databrary-ais
@@ -295,7 +304,7 @@ psu_ais |>
   dplyr::rename(id = user_id, first = user_prename, last = user_sortname) |>
   kableExtra::kable() |>
   kable_styling("striped", full_width = FALSE) |>
-  scroll_box(width = "900px", height = "250px")
+  scroll_box(width = "900px", height = "500px")
 ```
 
 ## Data @ Penn State
@@ -552,9 +561,28 @@ play_barplot(play_lang, lang_at_home)
 logout_db()
 ```
 
-# What about AI?
+## A tale of two eras
 
-## Or, the law of unintended consquences
+:::: {.columns}
+::: {.column width=50%}
+### BC^[Before the conversation.]
+
+![](https://play-project.org/img/people-karen.png){fig-align="center" width="50%"}
+:::
+::: {.column width=50%}
+### AD^[After Databrary.]
+
+![](include/img/databrary-new-leaf.jpg){fig-align="center" width="120%"}
+:::
+::::
+
+# The future of open developmental science
+
+## {background-color="black"}
+
+## What about AI?
+
+- Or, the law of unintended consquences
 
 ## Disclosive reidentification {.scrollable}
 
@@ -573,11 +601,7 @@ logout_db()
 
 ## {.center}
 
-### Should *all* data about human participants be shared with access restrictions? 
-
-# The future of open developmental science
-
-## {background-color="black"}
+### Should *all* data about human participants be shared with access restrictions?
 
 ## Imagine...
 
@@ -600,6 +624,10 @@ logout_db()
 
 ## Imagine...
 
+- All human subjects data shared via restricted access data repositories
+
+## Imagine...
+
 ::: {.incremental}
 - Every paper comes with openly shared data
   - Data papers^[e.g., *Scientific Data*] & preregistration standard
@@ -608,10 +636,6 @@ logout_db()
 - Aggregation of datasets for meta/mega/multiverse analyses made *much* easier
 
 :::
-
-## Imagine...
-
-- All data shared via restricted access data repositories
 
 ## Imagine...
 
@@ -647,18 +671,7 @@ logout_db()
   - How-to papers about *databraryr* or *databrarypy*
   - Mega-analysis of child visual acuity data
 
-# Wrap-up
-
-## Main points
-
-- Openly sharing data, protocols, code is an investment in the future of discovery in psychological science
-- Open sharing strengthens your research
-- Restricted access sharing protects participants and their privacy
-- Databrary enables open sharing of research data with access restrictions
-
-## Main points
-
-- PLAY project demonstrates feasibility of large-scale video-centric developmental science
+# Thanks!
 
 # Resources
 
