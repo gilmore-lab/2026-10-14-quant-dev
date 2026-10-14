@@ -640,7 +640,7 @@ logout_db()
 
 ## Disclosive reidentification {.scrollable}
 
-![](include/img/disclosive-reidentification.png){#fig-disclosive-reid width = "65%"}
+![](include/img/disclosive-reidentification.png){#fig-disclosive-reid width="65%"}
 
 ## Public sharing of pseudo-anonymized data
 
