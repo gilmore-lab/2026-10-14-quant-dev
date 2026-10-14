@@ -1,6 +1,6 @@
 format: 
   revealjs:
-    footer: "[Cognitive Brownbag](index.qmd) | © 2026 by Rick Gilmore under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
+    footer: "Quant Dev | © 2026 by Rick Gilmore under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
     lightbox: true
     reference-location: document
     slide-number: true
