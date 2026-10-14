@@ -83,12 +83,12 @@ plot(qrcode::qr_code("https://gilmore-lab.github.io/2026-10-14-quant-dev/"))
 
 :::
 ::: {.column width=50%}
-![](include/img/databrary-new-leaf.jpg){fig-align="center"}
+![](include/img/databrary-new-leaf.jpg){fig-align="center" width="70%"}
 :::
 ::::
 :::
  
-## Before
+## Before (the Conversation)
 
 :::: {.columns}
 
@@ -116,24 +116,11 @@ plot(qrcode::qr_code("https://gilmore-lab.github.io/2026-10-14-quant-dev/"))
 :::
 ::::
 
-## Afterward
-
-:::: {.columns}
-::: {.column width=50%}
-- (Shared) data, code, materials >> my specific findings
-- Behavioral scientists can (and should) study meaningful behavior
-- Current practices slow progress in discovery
-:::
-::: {.column width=50%}
-- Showing your work is easy with the right tools^[I favor [Quarto](https://quarto.org).]
-- Workable policies & technologies for safely & securing sharing sensitive and identifiable data are essential^[And always under scrutiny.]
-- Policy development for [SRCD](https://www.srcd.org/policy-scientific-integrity-transparency-and-openness), [PSU Open Scholarship Initiative](https://penn-state-open-science.github.io/)
-:::
-::::
+## After Databrary
 
 # Databrary
 
-## Can identifiable data
+## Can identifiable data...
 
 :::: {.columns}
 ::: {.column width=50%}
@@ -162,6 +149,7 @@ plot(qrcode::qr_code("https://gilmore-lab.github.io/2026-10-14-quant-dev/"))
 - Restricted access
 - Explicit [sharing release](https://databrary.org/support/irb) from participants/parents/staff
 - Institutional [agreements](https://databrary.org/about/agreement) 
+- Required ethics board training, supervision, & approval
 
 ## 
 
@@ -231,7 +219,7 @@ databraryr::get_release_levels()
 
 ---
 
-![https://databrary.org/home](include/img/databrary-site-map.png){#fig-databrary-map}
+![Sites with active Databrary Access Agreements from <https://databrary.org/home>](include/img/databrary-site-map.png){#fig-databrary-map}
 
 ## By the numbers
 
@@ -245,7 +233,7 @@ db_stats <- databraryr::get_db_stats()
 - *N*=`{r} db_stats$institutions` institutions
 - *N*=`{r} format(db_stats$investigators, big.mark = ",")` institutionally-authorized investigators
 - *N*=`{r} db_stats$affiliates` staff & trainees
-- *N*=`{r} format(db_stats$hours_of_recordings, big.mark = ",")` hours of shared recordings
+- *N*=`{r} format(db_stats$hours_of_recordings, big.mark = ",")` hours of *shared* recordings
 :::
 ::: {.column width=50%}
 ![https://databrary.org/home](include/img/databrary-site-map.png)
@@ -254,7 +242,12 @@ db_stats <- databraryr::get_db_stats()
 
 ## {.scrollable}
 
-![Top Databrary-using institutions by number of Authorized Investigators and usage.](include/img/databrary-usage-table.png)
+![Top Databrary-using institutions by number of Authorized Investigators and usage.](include/img/databrary-usage-table.png){#fig-top-databrary width="70%"}
+
+## 
+
+![Top institutional partners from countries outside the U.S. Forty-five percent of Databrary institutions with more than 2 researchers are outside the U.S.](include/img/databrary-non-us-table.png){#fig-non-us width="45%"}
+
 
 ## Databrary @ Penn State {.scrollable}
 
@@ -336,6 +329,7 @@ user_volumes_number <- sum(psu_user_stats$volumes_number)
   
 ## Aspirations
 
+::: {.incremental}
 - Membership model
 - Platform for discovery
   - Active curation [@Soska2021-mh]
@@ -344,7 +338,7 @@ user_volumes_number <- sum(psu_user_stats$volumes_number)
   - Improved search & filtering
 - Private/restricted access AI model-building
 
----
+:::
 
 # Play & Learning Across a Year (PLAY)
 
@@ -356,14 +350,14 @@ user_volumes_number <- sum(psu_user_stats$volumes_number)
 
 :::: {.columns}
 ::: {.column width=50%}
-![@Soska2021-mh Figure 1](include/img/soska-etal-fig-01.png)
+![@Soska2021-mh Figure 1](include/img/soska-etal-fig-01.png){#fig-soska-2021-fig-01}
 :::
 ::: {.column width=50%}
-![@Soska2021-mh Figure 3](include/img/soska-etal-fig-03.png)
+![@Soska2021-mh Figure 3](include/img/soska-etal-fig-03.png){#fig-soska-2021-fig-03}
 :::
 ::::
 
-## Dataset
+---
 
 ![https://databrary.org/volume/1280](include/img/databrary-1280-play.png){#fig-embargoed-data-release}
 
@@ -520,7 +514,7 @@ play_ethnicity |>
 
 ```{r}
 #| label: fig-play-langs-at-home
-#| fig-cap: "Parent report of whether English or Spanish (or both) are spoken to the child at home."
+#| fig-cap: "Parent report of whether English or Spanish (or both) are spoken to the child at home. Most spoke English, but 171 families spoke Spanish."
 play_lang <- play_df |>
   select(particip_id, english, spanish, english_spanish) |>
   mutate(english_only = ifelse(english & !spanish, TRUE, FALSE),
@@ -538,7 +532,7 @@ play_lang <- play_df |>
 play_barplot(play_lang, lang_at_home)
 ```
 
-## Let's take a peak
+## Let's take a peek
 
 ![<https://databrary.org/volume/1280>](include/img/databrary-1280-play.png){#fig-play-release-volume-databrary}
 
@@ -561,6 +555,20 @@ play_barplot(play_lang, lang_at_home)
 logout_db()
 ```
 
+---
+
+>*So, what have you discovered?*
+
+-- Shari Gilmore (Rick's Mom)
+
+::: {.fragment}
+>*That a study like this is possible.*
+
+>*We've only just begun to make discoveries.*
+
+-- Rick
+:::
+
 ## A tale of two eras
 
 :::: {.columns}
@@ -572,7 +580,45 @@ logout_db()
 ::: {.column width=50%}
 ### AD^[After Databrary.]
 
-![](include/img/databrary-new-leaf.jpg){fig-align="center" width="120%"}
+![](include/img/databrary-new-leaf.jpg){fig-align="center" width="70%"}
+:::
+::::
+
+## After (Databrary)
+
+:::: {.columns}
+::: {.column width=50%}
+- Same topics
+- Work in the open
+- Plan for sharing from the get-go
+- Automate!
+
+:::
+::: {.column width=50%}
+- Transparency $\rightarrow$ rigor, reproducibility, replicability, robustness
+- Transparency >> specific discoveries
+- Reproducibility >> novelty
+- Slower & methodical >> quick & dirty
+- Trust, but verify
+:::
+::::
+
+## After (Databrary)
+
+:::: {.columns}
+::: {.column width=50%}
+- Most researchers don't want to share data voluntarily
+- "How likely are you to share your research data if...?"
+
+::: {.fragment}
+- So, we have to make it easy & fun
+- Show how
+:::
+
+:::
+
+::: {.column width=50%}
+![@Houtkoop2018-tl Figure 3b](include/img/houtkoop-2018-fig-04.png)
 :::
 ::::
 
@@ -580,7 +626,15 @@ logout_db()
 
 ## {background-color="black"}
 
-## What about AI?
+---
+
+<iframe src="https://ourworldindata.org/grapher/child-mortality-around-the-world?tab=line" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
+
+---
+
+<iframe src="https://ourworldindata.org/grapher/infant-mortality-vaccines?tab=line" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
+
+## But, what about AI?
 
 - Or, the law of unintended consquences
 
@@ -670,6 +724,10 @@ logout_db()
       - Augment with geographically informed contextual data
   - How-to papers about *databraryr* or *databrarypy*
   - Mega-analysis of child visual acuity data
+
+## {.center}
+
+![](include/img/discover-more-faster.png){fig-align="center"}
 
 # Thanks!
 
